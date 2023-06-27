@@ -1,0 +1,14 @@
+[
+  {
+    "compName": "Example",
+    "compZhName": "示例",
+    "compDesc": "这是 youthKit 的 Example 组件",
+    "compClassName": "-example"
+  },
+  {
+    "compName": "Button",
+    "compZhName": "按钮",
+    "compDesc": "这是 youthKit 的 Button 组件",
+    "compClassName": "-button"
+  }
+]
