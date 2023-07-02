@@ -3,7 +3,7 @@ import Example from './src/index.vue';
 
 export const ExamplePlugin: Plugin = {
   install(app: App) {
-    app.component('yk--example', Example);
+    app.component('ykExample', Example);
   },
 };
 

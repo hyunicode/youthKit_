@@ -2,9 +2,6 @@
   <div class="header-block-box">
     <div class="logoBox">
       <img src="../assets/logo.png" alt="youthKit" @click="toHome" />
-      <m-badge type="primary" value="V 0.8.8">
-        <a href="javascript:;" @click="toHome">youthKit</a>
-      </m-badge>
     </div>
     <div class="toolsBox">
       <a
@@ -80,14 +77,16 @@ onMounted(() => {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-color: #fffffe;
+  border-bottom: lightgray 1px solid;
 
   .logoBox {
     display: flex;
     align-items: center;
 
     img {
-      width: 22px;
-      height: 22px;
+      width: 40px;
+      height: 40px;
       margin-right: 10px;
       cursor: pointer;
     }
@@ -104,9 +103,11 @@ onMounted(() => {
       white-space: nowrap;
       text-decoration: none;
     }
+    margin-left: 130px;
   }
 
   .toolsBox {
+    margin-right: 150px;
     a {
       font-weight: normal;
       font-size: 16px;
