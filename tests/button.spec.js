@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { mount } from '@vue/test-utils';
-import Button from '../packages/Button/src/index.vue';
+import Button from '../packages/Button/src/Button.vue';
 
 const TEXT = 'TEST TEXT';
 
