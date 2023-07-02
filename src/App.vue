@@ -13,12 +13,10 @@
 </template>
 
 <script setup>
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import headerBlock from './components/header-block.vue';
 import ComponentList from 'packages/list.json';
 import { reactive } from 'vue';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const data = reactive({
   links: ComponentList.map((item) => ({
     path: `/components/${item.compName}`,
@@ -44,16 +42,25 @@ body {
   aside {
     width: 200px;
     padding: 15px;
+    flex: 1;
     border-right: 1px solid #ccc;
     display: flex;
     flex-direction: column;
+    margin-left: 150px;
+    overflow: auto;
+    position: sticky;
+    top: 64px;
+    z-index: 998;
+    height: calc(100vh - 100px);
   }
   main {
     width: 100%;
-    flex: 1;
+    flex: 4;
     padding: 15px;
+    overflow: auto;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode',
       Geneva, Verdana, sans-serif;
+    margin-right: 150px;
   }
 }
 </style>
