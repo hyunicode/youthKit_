@@ -1,5 +1,5 @@
 <template>
   <div>
-    <yk--example />
+    <yk-example />
   </div>
 </template>
