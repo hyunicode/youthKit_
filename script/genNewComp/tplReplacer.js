@@ -23,6 +23,11 @@ const getTplFilePath = (meta) => ({
     from: './.template/index.ts.tpl',
     to: `../../packages/${meta.compName}/index.ts`,
   },
+  // test catalog
+  test: {
+    from: './.template/tests/index.spec.js.tpl',
+    to: `../../tests/${meta.compName}.spec.js`,
+  },
 });
 
 const compFilesTplReplacer = (meta) => {
