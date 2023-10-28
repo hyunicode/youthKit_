@@ -16,7 +16,7 @@ const getTplFilePath = (meta) => ({
   // src catalog
   vue: {
     from: './.template/src/index.vue.tpl',
-    to: `../../packages/${meta.compName}/src/index.vue`,
+    to: `../../packages/${meta.compName}/src/${meta.compName}.vue`,
   },
   // root catalog
   install: {
