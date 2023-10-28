@@ -1,42 +1,82 @@
 <template>
   <button
     class="yk-button"
-    :class="[
-      `yk-button--${type}`,
-      {
-        'is-plain': plain,
-        'is-round': round,
-        'is-circle': circle,
-        'is-disabled': disabled,
-      },
-      `yk-button--${size}`,
-    ]"
-    :disabled="disabled"
     @click="$emit('click', $event)"
+    :class="classes"
+    :disabled="classes['is-disabled']"
   >
     <slot></slot>
   </button>
 </template>
 
 <script lang="ts" setup>
-import { onMounted } from 'vue';
-// import { Button } from '..';
-interface Props {
-  type?: 'primary' | 'success' | 'warning' | 'danger' | 'info';
-  plain?: boolean;
-  round?: boolean;
-  circle?: boolean;
-  disabled?: boolean;
-  size?: 'large' | 'small' | 'medium';
-}
-withDefaults(defineProps<Props>(), {
-  type: 'primary',
-  plain: false,
-  round: false,
-  circle: false,
-  disabled: false,
-  size: 'medium',
+import { onMounted, computed } from 'vue';
+import { Button } from '..';
+// interface Props {
+//   type?: 'primary' | 'success' | 'warning' | 'danger' | 'info';
+//   plain?: boolean;
+//   round?: boolean;
+//   circle?: boolean;
+//   disabled?: boolean;
+//   size?: 'large' | 'small' | 'medium';
+// }
+// withDefaults(defineProps<Props>(), {
+//   type: 'primary',
+//   plain: false,
+//   round: false,
+//   circle: false,
+//   disabled: false,
+//   size: 'medium',
+// });
+const props = defineProps({
+  type: {
+    type: String,
+    default: 'primary',
+    required: false,
+    validator: (val: string) => ['primary', 'success', 'warning', 'danger', 'info'].includes(val),
+  },
+  plain: {
+    type: Boolean,
+    default: false,
+    required: false,
+    validator: (val: boolean) => typeof val === 'boolean',
+  },
+  round: {
+    type: Boolean,
+    default: false,
+    required: false,
+    validator: (val: boolean) => typeof val === 'boolean',
+  },
+  circle: {
+    type: Boolean,
+    default: false,
+    required: false,
+    validator: (val: boolean) => typeof val === 'boolean',
+  },
+  disabled: {
+    type: Boolean,
+    default: false,
+    required: false,
+    validator: (val: boolean) => typeof val === 'boolean',
+  },
+  size: {
+    type: String,
+    default: 'medium',
+    required: false,
+    validator: (val: string) => ['large', 'medium', 'small'].includes(val),
+  },
 });
+const classes = computed(() => {
+  return {
+    [`yk-button--${props.type}`]: true,
+    'is-plain': props.plain,
+    'is-round': props.round,
+    'is-circle': props.circle,
+    'is-disabled': props.disabled,
+    [`yk-button--${props.size}`]: true,
+  };
+});
+
 defineEmits(['click']);
 
 // mouseup => blur

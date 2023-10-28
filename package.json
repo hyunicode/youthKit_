@@ -40,12 +40,15 @@
     "vue-jest": "^5.0.0-alpha.10",
     "vue-loader": "^15.11.1",
     "vue-router": "^4.0.12",
-    "vue-tsc": "^0.28.10"
+    "vue-tsc": "^1.0.24"
   },
   "husky": {
     "hooks": {
       "pre-commit": "f2elint commit-file-scan",
       "commit-msg": "f2elint commit-msg-scan"
     }
+  },
+  "engines": {
+    "node": "16.20.2"
   }
 }
