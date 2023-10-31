@@ -1,7 +1,24 @@
-import { createRouter, createWebHashHistory, RouterOptions } from 'vue-router';
+import { createRouter, createWebHashHistory, RouterOptions } from 'vue-router'
 
-const routes = [
-  {
+let routes = [{
+    title: '示例',
+    name: 'Example',
+    path: '/components/Example',
+    component: () => import('packages/Example/docs/README.md'),
+  },{
+    title: '按钮',
+    name: 'Button',
+    path: '/components/Button',
+    component: () => import('packages/Button/docs/README.md'),
+  },{
+    title: '单选框',
+    name: 'Radio',
+    path: '/components/Radio',
+    component: () => import('packages/Radio/docs/README.md'),
+  }];
+
+routes = [
+    {
     path: '/',
     redirect: '/youthKit',
   },
@@ -11,19 +28,8 @@ const routes = [
     path: '/youthKit',
     component: () => import('../README.md'),
   },
-  {
-    title: '示例',
-    name: 'Example',
-    path: '/components/Example',
-    component: () => import('packages/Example/docs/README.md'),
-  },
-  {
-    title: '按钮',
-    name: 'Button',
-    path: '/components/Button',
-    component: () => import('packages/Button/docs/README.md'),
-  },
-];
+  ...routes,
+]
 
 const routerConfig = {
   history: createWebHashHistory(),
