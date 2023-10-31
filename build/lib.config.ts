@@ -9,7 +9,7 @@ export default defineConfig({
     outDir: 'dist',
     lib: {
       entry: resolve(__dirname, '../packages/index.ts'),
-      name: 'MYKit',
+      name: 'youthKit',
       fileName: (format) => `yk-kit.${format}.js`,
     },
     rollupOptions: {

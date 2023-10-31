@@ -8,7 +8,9 @@
     "gen": "node ./script/genNewComp/gen.js",
     "f2elint-scan": "f2elint scan",
     "f2elint-fix": "f2elint fix",
-    "test": "jest --runInBand"
+    "test": "jest --runInBand",
+    "build": "vite build && node script/copyDir.js",
+    "preview": "vite preview"
   },
   "dependencies": {
     "prismjs": "^1.25.0",

@@ -56,7 +56,9 @@ export default {
         ).default;
       } else {
         this.sourceCode = await fetch(
-          `${isDev ? '' : '/MY-Kit'}/packages/${this.compName}/docs/${this.demoName}.vue`,
+          // `${isDev ? '' : '/youthKit'}/packages/${this.compName}/docs/${this.demoName}.vue`,
+          // `/docs/${this.compName}/docs/${this.demoName}.vue`,
+          `${isDev ? '' : `/${this.compName}/docs/${this.demoName}.vue`}`,
         ).then((res) => res.text());
       }
     }

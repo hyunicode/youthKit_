@@ -10,29 +10,22 @@
 const fs = require('fs');
 const path = require('path');
 
-const sourceDir = './packages';
-const targetDir = './docs';
+const copyDir = (src, dist) => {
+  if (!fs.existsSync(dist)) {
+    fs.mkdirSync(dist);
+  }
 
-if (!fs.existsSync(targetDir)) {
-  fs.mkdirSync(targetDir, { recursive: true });
-}
+  const files = fs.readdirSync(src);
+  for (const file of files) {
+    const srcPath = path.join(src, file);
+    const distPath = path.join(dist, file);
 
-// 递归遍历文件夹，从sourceDir拷贝到targetDir
-function copyDir(sourceDir, targetDir) {
-  const files = fs.readdirSync(sourceDir);
-  files.forEach((file) => {
-    const sourcePath = path.join(sourceDir, file);
-    const targetPath = path.join(targetDir, file);
-    const stat = fs.statSync(sourcePath);
-    if (stat.isDirectory()) {
-      if (!fs.existsSync(targetPath)) {
-        fs.mkdirSync(targetPath);
-      }
-      copyDir(sourcePath, targetPath);
+    if (fs.lstatSync(srcPath).isDirectory()) {
+      copyDir(srcPath, distPath);
     } else {
-      fs.copyFileSync(sourcePath, targetPath);
+      fs.copyFileSync(srcPath, distPath);
     }
-  });
-}
+  }
+};
 
-copyDir(sourceDir, targetDir);
+copyDir('./packages', './docs');
