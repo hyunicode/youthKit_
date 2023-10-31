@@ -3,6 +3,7 @@
 import demo from './demo.vue'
 import disable from './disable.vue'
 import size from './size.vue'
+import group from './group.vue'
 </script>
 
 <!-- 加载 demo 组件 end -->
@@ -29,6 +30,12 @@ import size from './size.vue'
 
 <preview comp-name="Button" demo-name="size">
   <size />
+</Preview>
+
+## ButtionGroup
+
+<Preview comp-name="Button" demo-name="group">
+  <group />
 </Preview>
 
 ## 属性
