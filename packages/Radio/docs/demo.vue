@@ -83,24 +83,15 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const radio1 = ref('');
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const radio2 = ref('');
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const radio3 = ref('');
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const radio4 = ref('');
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const radio5 = ref('');
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const radio6 = ref('');
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const radio7 = ref('');
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const event = (e: any) => {
-  // eslint-disable-next-line no-console
   console.log(e);
 };
 </script>

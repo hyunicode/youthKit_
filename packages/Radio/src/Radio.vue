@@ -14,17 +14,14 @@ import { useRadio, radioProps, radioEmits } from './radio';
 const props = defineProps(radioProps);
 const emits = defineEmits(radioEmits);
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const { modelValue, label, size, disabled, classes, checked } = useRadio(props, emits);
 
-// 在页面加载的时候运行checkischecked方法
 onMounted(() => {
   if (checked.value && !disabled.value) {
     modelValue.value = props.label;
   }
 });
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const handleChange = () => {
   if (!disabled.value) {
     modelValue.value = props.label;
@@ -34,7 +31,7 @@ const handleChange = () => {
 
 <script lang="ts">
 export default {
-  name: 'YRadio',
+  name: 'Radio',
 };
 </script>
 
