@@ -1,4 +1,5 @@
 <!-- 加载 demo 组件 start -->
+
 <script setup>
 import demo from './demo.vue'
 import disable from './disable.vue'
@@ -32,7 +33,7 @@ import group from './group.vue'
   <size />
 </Preview>
 
-## ButtionGroup
+## ButtonGroup
 
 <Preview comp-name="Button" demo-name="group">
   <group />
@@ -40,14 +41,26 @@ import group from './group.vue'
 
 ## 属性
 
-|    参数    |      说明      |  类型   |   可选值    |  默认值   | 是否必填 |
-| :--------: | :------------: | :-----: | :---------: | :-------: | :------: |
-|   `type`   |    按钮类型    | string  |   `enum`    | `primary` |    否    |
+<style>
+table th:first-of-type {
+    width: 4cm;
+}
+table th:nth-of-type(2) {
+    width: 200pt;
+}
+table th:nth-of-type(3) {
+    width: 8em;
+}
+</style>
+
+|    参数    | 说明           |  类型   |   可选值    |  默认值   | 是否必填 |
+| :--------: | :------------- | :-----: | :---------: | :-------: | :------: |
+|   `type`   | 按钮类型       | string  |   `enum`    | `primary` |    否    |
 |  `plain`   | 是否为朴素按钮 | boolean | true, false |  `false`  |    否    |
 |  `round`   | 是否为圆角按钮 | boolean | true, false |  `false`  |    否    |
 |  `circle`  | 是否为圆形按钮 | boolean | true, false |  `false`  |    否    |
-| `disabled` |  是否禁用按钮  | boolean | true, false |  `false`  |    否    |
-|   `size`   |    按钮大小    | string  |   `enum`    | `medium`  |    否    |
+| `disabled` | 是否禁用按钮   | boolean | true, false |  `false`  |    否    |
+|   `size`   | 按钮大小       | string  |   `enum`    | `medium`  |    否    |
 
 ## 事件
 

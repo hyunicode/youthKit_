@@ -22,7 +22,7 @@ import { reactive, ref, onMounted } from 'vue';
 
 const { push, currentRoute } = useRouter();
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const toHome = () => push('/youthKit');
+const toHome = () => push('/');
 const fullPath = ref(currentRoute.value.fullPath);
 const tabIndex = ref(fullPath === '/youthKit' ? 1 : sessionStorage.getItem('tabIndex') || 0);
 
@@ -30,7 +30,7 @@ const state = reactive({
   tools: [
     {
       name: '首页',
-      path: '/youthKit',
+      path: '/',
     },
     {
       name: '组件',
@@ -44,6 +44,11 @@ const state = reactive({
       name: '问题反馈',
       // path: 'open',
       // url: '',
+    },
+    {
+      name: '源码',
+      path: 'open',
+      url: 'https://github.com/hyunicode/youthkit',
     },
   ],
 });

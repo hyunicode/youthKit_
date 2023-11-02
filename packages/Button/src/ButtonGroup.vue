@@ -1,16 +1,14 @@
 <template>
-  <div class="y-button-group">
+  <div class="yk-button-group">
     <slot />
   </div>
 </template>
 <script setup lang="ts"></script>
 
 <style lang="scss" scoped>
-.y-button-group {
-  :deep .y-button {
-    // float: left;
+.yk-button-group {
+  :deep(.yk-button) {
     position: relative;
-    // background-color: green;
     margin-left: 0;
 
     &:first-child {
