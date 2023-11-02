@@ -10,5 +10,11 @@
     "compZhName": "按钮",
     "compDesc": "这是 youthKit 的 Button 组件",
     "compClassName": "-button"
+  },
+  {
+    "compName": "Radio",
+    "compZhName": "单选框",
+    "compDesc": "这是 youthKit 的 Radio 组件",
+    "compClassName": "radio"
   }
 ]
