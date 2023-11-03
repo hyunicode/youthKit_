@@ -1,7 +1,7 @@
 <template>
   <div id="root">
     <div id="info">
-      <img src="../assets/logo.png" alt="" />
+      <img src="../assets/youthKit.png" alt="" />
       <div id="desc">
         <p id="title">
           <span style="font-family: 'STXinwei'">youthKit</span>

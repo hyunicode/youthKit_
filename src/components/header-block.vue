@@ -1,7 +1,7 @@
 <template>
   <div class="header-block-box">
     <div class="logoBox">
-      <img src="../assets/logo.png" alt="youthKit" @click="toHome" />
+      <img src="../assets/youthKit.png" alt="youthKit" @click="toHome" />
     </div>
     <div class="toolsBox">
       <a
