@@ -1,7 +1,7 @@
 <template>
   <div class="header-block-box">
     <div class="logoBox">
-      <img src="../assets/logo.png" alt="youthKit" @click="toHome" />
+      <img src="../assets/youthKit.png" alt="youthKit" @click="toHome" />
     </div>
     <div class="toolsBox">
       <a
@@ -38,12 +38,13 @@ const state = reactive({
     },
     {
       name: '更新日志',
-      path: '/',
+      path: 'open',
+      url: 'https://github.com/Hyunicode/youthKit/pulse',
     },
     {
       name: '问题反馈',
-      // path: 'open',
-      // url: '',
+      path: 'open',
+      url: 'https://github.com/Hyunicode/youthKit/issues',
     },
     {
       name: '源码',

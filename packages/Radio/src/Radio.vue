@@ -1,172 +1,522 @@
 <template>
-  <div class="y-radio" @click="handleChange" :class="classes">
-    <span class="y-radio-input" :class="classes"></span>
-    <span class="y-radio-label" :class="classes">
-      <slot>{{ label }}</slot>
-    </span>
+  <div :class="[`yk-radio-${size}`, customClass]">
+    <label
+      v-for="(item, index) in options"
+      :key="index"
+      :class="[
+        { 'yk-radio-active': modelVal == item[valueFiled] },
+        item.disabled
+          ? modelVal == item[valueFiled]
+            ? 'yk-radio-active-disabled'
+            : 'yk-radio-disabled'
+          : '',
+      ]"
+      @click="change(item, index)"
+      :style="{
+        display: inline ? 'inline-block' : 'table',
+        'margin-bottom': inline ? '0' : size == 'small' ? '8px' : size == 'mini' ? '6px' : '10px',
+      }"
+    >
+      <span
+        class="yk-radio-round"
+        :style="{
+          'border-color':
+            customColor == ''
+              ? ''
+              : item.disabled
+              ? ''
+              : modelVal != item[valueFiled]
+              ? ''
+              : customColor,
+          background:
+            customColor == ''
+              ? ''
+              : item.disabled
+              ? ''
+              : modelVal != item[valueFiled]
+              ? ''
+              : customColor,
+        }"
+      ></span>
+      <span
+        :style="{
+          color:
+            customColor == ''
+              ? ''
+              : item.disabled
+              ? ''
+              : modelVal != item[valueFiled]
+              ? ''
+              : customColor,
+        }"
+        >{{ item[labelFiled] }}</span
+      >
+    </label>
   </div>
 </template>
-
-<script setup lang="ts">
-import { onMounted } from 'vue';
-import { useRadio, radioProps, radioEmits } from './radio';
-
-const props = defineProps(radioProps);
-const emits = defineEmits(radioEmits);
-
-const { modelValue, label, size, disabled, classes, checked } = useRadio(props, emits);
-
-onMounted(() => {
-  if (checked.value && !disabled.value) {
-    modelValue.value = props.label;
-  }
-});
-
-const handleChange = () => {
-  if (!disabled.value) {
-    modelValue.value = props.label;
-  }
-};
-</script>
-
-<script lang="ts">
+<script>
+import { ref } from '@vue/reactivity';
 export default {
-  name: 'Radio',
+  name: 'mRadio',
 };
 </script>
-
-<style lang="scss">
-@import '/src/assets/global.scss';
-
-$checked-color: $primary;
-
-$large-size: 16px;
-$default-size: 14px;
-$small-size: 12px;
-
-$large-inner-size: 10px;
-$default-inner-size: 8px;
-$small-inner-size: 6px;
-
-$large-height: 40px;
-$default-height: 32px;
-$small-height: 24px;
-
-.y-radio {
-  cursor: pointer;
-  margin-right: 32px;
-  display: inline-flex;
-  align-items: center;
-  height: $default-height;
-  position: relative;
-
-  &.is-bordered {
-    border: 1px solid #c2c2c2;
-    border-radius: 4px;
-    padding: 0 14px;
-    &.is-checked:not(.is-disabled) {
-      color: $checked-color;
-      border: 1px solid $checked-color;
-    }
+<script setup>
+const emit = defineEmits(['update:modelValue', 'change']);
+const props = defineProps({
+  modelValue: String | Number,
+  size: {
+    type: String,
+    default: 'default',
+  },
+  options: {
+    type: Array,
+    default: () => {
+      return [];
+    },
+  },
+  labelFiled: {
+    type: String,
+    default: 'label',
+  },
+  valueFiled: {
+    type: String,
+    default: 'value',
+  },
+  customColor: String,
+  customClass: String,
+  inline: {
+    type: Boolean,
+    default: true,
+  },
+});
+const modelVal = ref(props.modelValue || '');
+const change = (item, index) => {
+  if (!item.disabled) {
+    modelVal.value = item[props.valueFiled];
+    emit('update:modelValue', item[props.valueFiled]);
+    emit('change', { value: item[props.valueFiled], index: index });
   }
-  &.y-radio-small {
-    height: $small-height;
-    &.is-bordered:not(.is-disabled) {
-      padding: 0 10px;
-    }
-  }
+};
+const radioIndex = ref(0);
+</script>
 
-  &.y-radio-large {
-    height: $large-height;
-    &.is-bordered:not(.is-disabled) {
-      padding: 0 18px;
-    }
-  }
-
-  &.is-disabled {
-    cursor: not-allowed;
-    color: #c2c2c2;
-  }
-
-  > .y-radio-input {
-    width: $default-size;
-    height: $default-size;
-    display: inline-flex;
-    box-shadow: #e0e0e6 0px 0px 0px 1px;
-    border-radius: 100%;
-    position: relative;
-
-    &.y-radio-small {
-      height: $small-size;
-      width: $small-size;
-      &:before {
-        left: calc($small-size / 2 - $small-inner-size / 2);
-        top: calc($small-size / 2 - $small-inner-size / 2);
-        width: $small-inner-size;
-        height: $small-inner-size;
-      }
-    }
-
-    &.y-radio-large {
-      height: $large-size;
-      width: $large-size;
-      &:before {
-        left: calc($large-size / 2 - $large-inner-size / 2);
-        top: calc($large-size / 2 - $large-inner-size / 2);
-        width: $large-inner-size;
-        height: $large-inner-size;
-      }
-    }
-
-    &.is-checked {
-      box-shadow: $checked-color 0px 0px 0px 1px;
-
-      &:before {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-
-    &:before {
-      content: ' ';
-      opacity: 0;
-      position: absolute;
-      left: calc($default-size / 2 - $default-inner-size / 2);
-      top: calc($default-size / 2 - $default-inner-size / 2);
-      width: $default-inner-size;
-      height: $default-inner-size;
-      background-color: $checked-color;
-      border-radius: 50%;
-      transform: scale(0.8);
-      transition: opacity 300ms ease-in-out, background-color 300ms ease-in-out,
-        transform 300ms ease-in-out;
-    }
-
-    &.is-disabled {
-      background-color: #fafafc;
-      box-shadow: #e0e0e6 0px 0px 0px 1px;
-
-      &:before {
-        background-color: #c0c4cc;
-      }
-    }
-
-    &:not(.is-disabled):hover {
-      box-shadow: $checked-color 0px 0px 0px 1px;
-    }
-  }
-
-  > .y-radio-label {
-    padding-left: 8px;
+<style lang="scss" scoped>
+.yk-radio-default {
+  width: auto;
+  height: auto;
+  overflow: hidden;
+  label {
+    width: auto;
+    height: auto;
+    overflow: hidden;
+    display: inline-block;
+    line-height: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-right: 15px;
     user-select: none;
-    font-size: $default-size;
-
-    &.y-radio-large {
-      font-size: $large-size;
+    span {
+      float: left;
+      color: #505050;
+      font-size: 14px;
     }
-
-    &.y-radio-small {
-      font-size: $small-size;
+    span.yk-radio-round {
+      width: 14px;
+      height: 14px;
+      display: inline-block;
+      position: relative;
+      border: 1px solid #b9b9b9;
+      border-radius: 50%;
+      margin: 3px 8px 0 0;
+      background: #fff;
+      transition: transform 0.15s ease-in;
+      box-sizing: border-box;
+      &::after {
+        width: 5px;
+        height: 5px;
+        border-radius: 100%;
+        background-color: #fff;
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin: -2.5px 0 0 -2.5px;
+        transition: transform 0.15s ease-in;
+      }
+    }
+  }
+  label.yk-radio-disabled {
+    width: auto;
+    height: auto;
+    overflow: hidden;
+    display: inline-block;
+    line-height: 20px;
+    cursor: no-drop;
+    font-size: 14px;
+    margin-right: 15px;
+    span {
+      float: left;
+      color: #b4b6b9;
+    }
+    span.yk-radio-round {
+      width: 14px;
+      height: 14px;
+      display: inline-block;
+      position: relative;
+      border: 1px solid #b9b9b9;
+      border-radius: 50%;
+      margin: 3px 8px 0 0;
+      background: #ebebeb;
+      transition: transform 0.15s ease-in;
+      &::after {
+        width: 4px;
+        height: 4px;
+        border-radius: 100%;
+        background-color: #999999;
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin: -2px 0 0 -2px;
+        transition: transform 0.15s ease-in;
+      }
+    }
+  }
+  label.yk-radio-active {
+    span {
+      float: left;
+      color: #0e80eb;
+    }
+    span.yk-radio-round {
+      width: 14px;
+      height: 14px;
+      display: inline-block;
+      position: relative;
+      border: 1px solid #0e80eb;
+      border-radius: 50%;
+      margin: 3px 8px 0 0;
+      background: #0e80eb;
+      transition: transform 0.15s ease-in;
+      &::after {
+        width: 4px;
+        height: 4px;
+        border-radius: 100%;
+        background-color: #fff;
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin: -2px 0 0 -2px;
+        transition: transform 0.15s ease-in;
+      }
+    }
+  }
+  label.yk-radio-active-disabled {
+    cursor: no-drop;
+    span {
+      float: left;
+      color: #b4b6b9;
+    }
+    span.yk-radio-round {
+      width: 14px;
+      height: 14px;
+      display: inline-block;
+      position: relative;
+      border: 1px solid #b9b9b9;
+      border-radius: 50%;
+      margin: 3px 8px 0 0;
+      background: #ebebeb;
+      transition: transform 0.15s ease-in;
+      &::after {
+        width: 4px;
+        height: 4px;
+        border-radius: 100%;
+        background-color: rgb(153, 153, 153);
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin: -2px 0 0 -2px;
+        transition: transform 0.15s ease-in;
+      }
+    }
+  }
+}
+// small
+.yk-radio-small {
+  width: auto;
+  height: auto;
+  overflow: hidden;
+  label {
+    width: auto;
+    height: auto;
+    overflow: hidden;
+    display: inline-block;
+    line-height: 20px;
+    cursor: pointer;
+    font-size: 13px;
+    margin-right: 13px;
+    user-select: none;
+    span {
+      float: left;
+      color: #505050;
+      font-size: 13px;
+    }
+    span.yk-radio-round {
+      width: 12px;
+      height: 12px;
+      display: inline-block;
+      position: relative;
+      border: 1px solid #b9b9b9;
+      border-radius: 50%;
+      margin: 4px 7px 0 0;
+      background: #fff;
+      transition: transform 0.15s ease-in;
+      box-sizing: border-box;
+      &::after {
+        width: 4px;
+        height: 4px;
+        border-radius: 100%;
+        background-color: #fff;
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin: -2px 0 0 -2px;
+        transition: transform 0.15s ease-in;
+      }
+    }
+  }
+  label.yk-radio-disabled {
+    display: inline-block;
+    line-height: 20px;
+    cursor: no-drop;
+    font-size: 13px;
+    margin-right: 13px;
+    span {
+      float: left;
+      color: #b4b6b9;
+    }
+    span.yk-radio-round {
+      width: 12px;
+      height: 12px;
+      display: inline-block;
+      position: relative;
+      border: 1px solid #b9b9b9;
+      border-radius: 50%;
+      margin: 4px 7px 0 0;
+      background: #ebebeb;
+      transition: transform 0.15s ease-in;
+      &::after {
+        width: 4px;
+        height: 4px;
+        border-radius: 100%;
+        background-color: #999999;
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin: -2px 0 0 -2px;
+        transition: transform 0.15s ease-in;
+      }
+    }
+  }
+  label.yk-radio-active {
+    span {
+      float: left;
+      color: #0e80eb;
+    }
+    span.yk-radio-round {
+      width: 12px;
+      height: 12px;
+      display: inline-block;
+      position: relative;
+      border: 1px solid #0e80eb;
+      border-radius: 50%;
+      margin: 4px 7px 0 0;
+      background: #0e80eb;
+      transition: transform 0.15s ease-in;
+      &::after {
+        width: 4px;
+        height: 4px;
+        border-radius: 100%;
+        background-color: #fff;
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin: -2px 0 0 -2px;
+        transition: transform 0.15s ease-in;
+      }
+    }
+  }
+  label.yk-radio-active-disabled {
+    cursor: no-drop;
+    span {
+      float: left;
+      color: #b4b6b9;
+    }
+    span.yk-radio-round {
+      width: 12px;
+      height: 12px;
+      display: inline-block;
+      position: relative;
+      border: 1px solid #b9b9b9;
+      border-radius: 50%;
+      margin: 4px 7px 0 0;
+      background: #ebebeb;
+      transition: transform 0.15s ease-in;
+      &::after {
+        width: 4px;
+        height: 4px;
+        border-radius: 100%;
+        background-color: rgb(153, 153, 153);
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin: -2px 0 0 -2px;
+        transition: transform 0.15s ease-in;
+      }
+    }
+  }
+}
+// mini
+.yk-radio-mini {
+  width: auto;
+  height: auto;
+  overflow: hidden;
+  label {
+    width: auto;
+    height: auto;
+    overflow: hidden;
+    display: inline-block;
+    line-height: 20px;
+    cursor: pointer;
+    font-size: 12px;
+    margin-right: 12px;
+    user-select: none;
+    span {
+      float: left;
+      color: #505050;
+      font-size: 12px;
+    }
+    span.yk-radio-round {
+      width: 11px;
+      height: 11px;
+      display: inline-block;
+      position: relative;
+      border: 1px solid #b9b9b9;
+      border-radius: 50%;
+      margin: 5px 6px 0 0;
+      background: #fff;
+      transition: transform 0.15s ease-in;
+      box-sizing: border-box;
+      &::after {
+        width: 3px;
+        height: 3px;
+        border-radius: 100%;
+        background-color: #fff;
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin: -1.5px 0 0 -1.5px;
+        transition: transform 0.15s ease-in;
+      }
+    }
+  }
+  label.yk-radio-disabled {
+    display: inline-block;
+    line-height: 20px;
+    cursor: no-drop;
+    font-size: 12px;
+    margin-right: 12px;
+    span {
+      float: left;
+      color: #b4b6b9;
+    }
+    span.yk-radio-round {
+      width: 11px;
+      height: 11px;
+      display: inline-block;
+      position: relative;
+      border: 1px solid #b9b9b9;
+      border-radius: 50%;
+      margin: 5px 6px 0 0;
+      background: #ebebeb;
+      transition: transform 0.15s ease-in;
+      &::after {
+        width: 3px;
+        height: 3px;
+        border-radius: 100%;
+        background-color: #999999;
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin: -1.5px 0 0 -1.5px;
+        transition: transform 0.15s ease-in;
+      }
+    }
+  }
+  label.yk-radio-active {
+    span {
+      float: left;
+      color: #0e80eb;
+    }
+    span.yk-radio-round {
+      width: 11px;
+      height: 11px;
+      display: inline-block;
+      position: relative;
+      border: 1px solid #0e80eb;
+      border-radius: 50%;
+      margin: 5px 6px 0 0;
+      background: #0e80eb;
+      transition: transform 0.15s ease-in;
+      &::after {
+        width: 3px;
+        height: 3px;
+        border-radius: 100%;
+        background-color: #fff;
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin: -1.5px 0 0 -1.5px;
+        transition: transform 0.15s ease-in;
+      }
+    }
+  }
+  label.yk-radio-active-disabled {
+    cursor: no-drop;
+    span {
+      float: left;
+      color: #b4b6b9;
+    }
+    span.yk-radio-round {
+      width: 11px;
+      height: 11px;
+      display: inline-block;
+      position: relative;
+      border: 1px solid #b9b9b9;
+      border-radius: 50%;
+      margin: 5px 6px 0 0;
+      background: #ebebeb;
+      transition: transform 0.15s ease-in;
+      &::after {
+        width: 3px;
+        height: 3px;
+        border-radius: 100%;
+        background-color: rgb(153, 153, 153);
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin: -1.5px 0 0 -1.5px;
+        transition: transform 0.15s ease-in;
+      }
     }
   }
 }

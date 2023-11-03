@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import { provide, reactive, toRefs, defineProps, defineEmits } from 'vue';
+import { provide, reactive, toRefs } from 'vue';
 import { radioGroupProps, radioGroupEmits } from './radio-grop';
 
 const props = defineProps(radioGroupProps);

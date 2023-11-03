@@ -1,4 +1,4 @@
-<img src="./src/assets/logo.png" alt="logo" style="zoom:10%;" />
+<img src="./src/assets/youthKit.png" alt="Logo"/>
 
 # youthKit 组件库
 
@@ -12,7 +12,13 @@
 
 `TypeScript`: 类型定义 => 可读性 + 可维护性; 静态类型检查 => 代码可控
 
-<img src="https://user-images.githubusercontent.com/499550/93624428-53932780-f9ae-11ea-8d16-af949e16a09f.png" style="zoom: 50%;" /><img src="https://vitejs.dev/logo-with-shadow.png" style="zoom: 30%;" /><img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Typescript_logo_2020.svg" style="zoom:33%;" />
+<div style="display: flex">
+  <img src="./src/assets/Vue3.png" alt="Vue3"/>
+
+  <img src="./src/assets/Vite.png" alt="Vite"/>
+
+  <img src="./src/assets/TS.png" alt="TS"/>
+</div>
 
 ## Highlights
 
@@ -33,6 +39,8 @@
 ## Todo
 
 🎈 统一组件风格, 完备组件数量
+
+🎈 发布 npm 包
 
 🎈 更好的自动化流程(CI/CD)
 
