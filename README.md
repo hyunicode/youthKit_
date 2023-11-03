@@ -1,4 +1,4 @@
-<img src="./src/assets/logo.png" alt="logo"/>
+<img src="./src/assets/youthKit.png" alt="Logo"/>
 
 # youthKit 组件库
 
