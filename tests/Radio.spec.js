@@ -8,27 +8,17 @@ describe('render', () => {
     const wrapper = mount(Radio);
     expect(wrapper.exists()).toBe(true);
   });
-  it('component props', () => {
+  it('props-options', () => {
     const wrapper = mount(Radio, {
       props: {
-        label: 'radio',
-        disabled: true,
-        border: true,
-        modelValue: radioValue.value,
+        options: [
+          { label: '选项1', value: '1' },
+          { label: '选项2', value: '2' },
+          { label: '选项3', value: '3', disabled: true },
+        ],
       },
     });
-    expect(wrapper.props().label).toBe('radio');
-    expect(wrapper.props().disabled).toBe(true);
-    expect(wrapper.props().border).toBe(true);
-    expect(wrapper.props().modelValue).toBe('radioValue');
-  });
-  it('component events', async () => {
-    const wrapper = mount(Radio, {
-      props: {
-        modelValue: radioValue.value,
-      },
-    });
-    await wrapper.trigger('click');
-    expect(wrapper.emitted().change).toBeTruthy();
+    const radio = wrapper.findAll('.yk-radio-round');
+    expect(radio.length).toBe(3);
   });
 });
