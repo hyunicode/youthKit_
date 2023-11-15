@@ -3,10 +3,6 @@ import { createRouter, createWebHashHistory, RouterOptions } from 'vue-router'
 let routes = [{{ routes }}];
 
 routes = [
-    {
-    path: '/',
-    redirect: '/youthKit',
-  },
   {
     title: '首页',
     name: 'Home',

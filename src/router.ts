@@ -19,6 +19,12 @@ let routes = [
     path: '/components/Radio',
     component: () => import('packages/Radio/docs/README.md'),
   },
+  {
+    title: '多选框',
+    name: 'Checkbox',
+    path: '/components/Checkbox',
+    component: () => import('packages/Checkbox/docs/README.md'),
+  },
 ];
 
 routes = [

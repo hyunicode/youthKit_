@@ -17,4 +17,8 @@ export default defineConfig({
     }),
     Markdown(),
   ],
+  server: {
+    port: 5173,
+    open: true,
+  },
 });

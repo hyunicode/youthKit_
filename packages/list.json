@@ -16,5 +16,11 @@
     "compZhName": "单选框",
     "compDesc": "这是 youthKit 的 Radio 组件",
     "compClassName": "radio"
+  },
+  {
+    "compName": "Checkbox",
+    "compZhName": "多选框",
+    "compDesc": "这是 youthKit 的 Checkbox 组件",
+    "compClassName": "checkbox"
   }
 ]

@@ -54,13 +54,10 @@
     </label>
   </div>
 </template>
-<script>
-import { ref } from '@vue/reactivity';
-export default {
-  name: 'mRadio',
-};
-</script>
+
 <script setup>
+import { ref } from 'vue';
+
 const emit = defineEmits(['update:modelValue', 'change']);
 const props = defineProps({
   modelValue: String | Number,
