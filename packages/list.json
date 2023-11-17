@@ -22,5 +22,11 @@
     "compZhName": "多选框",
     "compDesc": "这是 youthKit 的 Checkbox 组件",
     "compClassName": "checkbox"
+  },
+  {
+    "compName": "Table",
+    "compZhName": "表格",
+    "compDesc": "这是 youthKit 的 Table 组件",
+    "compClassName": "table"
   }
 ]
