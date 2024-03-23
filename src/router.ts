@@ -1,31 +1,43 @@
-import { createRouter, createWebHashHistory, RouterOptions } from 'vue-router'
+import {
+  createRouter,
+  createWebHashHistory,
+  RouterOptions,
+  RouteLocationNormalized,
+  RouteLocationNormalizedLoaded,
+} from 'vue-router';
 
-let routes = [{
+let routes = [
+  {
     title: '示例',
     name: 'Example',
     path: '/components/Example',
     component: () => import('packages/Example/docs/README.md'),
-  },{
+  },
+  {
     title: '按钮',
     name: 'Button',
     path: '/components/Button',
     component: () => import('packages/Button/docs/README.md'),
-  },{
+  },
+  {
     title: '单选框',
     name: 'Radio',
     path: '/components/Radio',
     component: () => import('packages/Radio/docs/README.md'),
-  },{
+  },
+  {
     title: '多选框',
     name: 'Checkbox',
     path: '/components/Checkbox',
     component: () => import('packages/Checkbox/docs/README.md'),
-  },{
+  },
+  {
     title: '表格',
     name: 'Table',
     path: '/components/Table',
     component: () => import('packages/Table/docs/README.md'),
-  }];
+  },
+];
 
 routes = [
   {
@@ -35,12 +47,12 @@ routes = [
     component: () => import('../README.md'),
   },
   ...routes,
-]
+];
 
 const routerConfig = {
   history: createWebHashHistory(),
   routes,
-  scrollBehavior(to: any, from: any) {
+  scrollBehavior(to: RouteLocationNormalized, from: RouteLocationNormalizedLoaded) {
     if (to.path !== from.path) {
       return { top: 0 };
     }

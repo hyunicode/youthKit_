@@ -7,6 +7,4 @@ export const TablePlugin: Plugin = {
   },
 };
 
-export {
-  Table,
-};
+export { Table };

@@ -7,6 +7,4 @@ export const CheckboxPlugin: Plugin = {
   },
 };
 
-export {
-  Checkbox,
-};
+export { Checkbox };

@@ -29,16 +29,16 @@ import options from './options.vue'
 
 ## 属性
 
-|     参数      |         说明          |       类型        |        可选值        | 默认值  | 是否必填 |
-| :-----------: | :-------------------: | :---------------: | :------------------: | :-----: | :------: |
-|   `v-model`   |      选中状态值       | String\| Number\  |          -           |    -    |    是    |
-|   `option`    |   Checkbox 的 选项配置   |       Array       |          -           |    -    |    是    |
-|    `size`     |     Checkbox 的大小      |      String       | mini / default/small | default |    否    |
-|   `inline`    |    是否为行内排列     |      Boolean      |     true / false     |  false  |    否    |
-| `labelFiled`  | 自定义 label 的字段名 |      String       |          -           |    -    |    否    |
-| `valueFiled`  | 自定义 value 的字段名 |      String       |          -           |    -    |    否    |
-| `customColor` |  自定义 Checkbox 的颜色  |      String       |          -           |    -    |    否    |
-| `customClass` |  自定义 Checkbox 的类名  |      String       |          -           |    -    |    否    |
+|     参数      |          说明          |       类型        |        可选值        | 默认值  | 是否必填 |
+| :-----------: | :--------------------: | :---------------: | :------------------: | :-----: | :------: |
+|   `v-model`   |       选中状态值       | String\| Number\  |          -           |    -    |    是    |
+|   `option`    |  Checkbox 的 选项配置  |       Array       |          -           |    -    |    是    |
+|    `size`     |    Checkbox 的大小     |      String       | mini / default/small | default |    否    |
+|   `inline`    |     是否为行内排列     |      Boolean      |     true / false     |  false  |    否    |
+| `labelFiled`  | 自定义 label 的字段名  |      String       |          -           |    -    |    否    |
+| `valueFiled`  | 自定义 value 的字段名  |      String       |          -           |    -    |    否    |
+| `customColor` | 自定义 Checkbox 的颜色 |      String       |          -           |    -    |    否    |
+| `customClass` | 自定义 Checkbox 的类名 |      String       |          -           |    -    |    否    |
 
 ## 事件
 

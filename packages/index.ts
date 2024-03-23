@@ -18,8 +18,8 @@ const MYKitPlugin: Plugin = {
 
 export default MYKitPlugin;
 
-export * from './Example'
-export * from './Button'
-export * from './Radio'
-export * from './Checkbox'
-export * from './Table'
+export * from './Example';
+export * from './Button';
+export * from './Radio';
+export * from './Checkbox';
+export * from './Table';
